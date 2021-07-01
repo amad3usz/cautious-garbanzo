@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'typeface-pacifico';
+import 'typeface-comfortaa';
+import App from './App';
 
 ReactDOM.render(
 	<React.StrictMode>
