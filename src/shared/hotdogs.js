@@ -54,4 +54,11 @@ export const HOTDOGS = [
 		price: 9.25,
 		image: 'assets/images/vegan.jpg',
 	},
+	{
+		id: 7,
+		name: 'Pigs in a Blanket',
+		description: 'An all time favorite, these hot dogs are snuggled up in a warm blanket of fluffy dough,served with a sharp cheddar cheese dip and seasoned fries with chipotle aioli.',
+		price: 5.25,
+		image: 'assets/images/pigsinablanket.jpg',
+	},
 ];

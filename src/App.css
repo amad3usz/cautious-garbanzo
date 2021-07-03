@@ -3,10 +3,16 @@ body {
 }
 
 .card-title {
-	font: 500 1.5rem 'Pacifico', cursive;
+	font: 500 2rem 'Pacifico', cursive;
 }
 
 .card-img-overlay .card-title {
-	color: white;
-	background-color: rgba(0, 0, 0, 0.5);
+	color: rgb(28, 28, 28);
+	background-color: rgba(255, 255, 255, 0.5);
+	position: absolute;
+	top: 45%;
+	right: 0;
+	left: 0;
+	padding: 10px;
+	text-align: center;
 }
