@@ -1,27 +1,16 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand } from 'reactstrap';
-import Menu from './components/MenuComponent';
+import Main from './components/MainComponent';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import { HOTDOGS } from './shared/hotdogs';
 
 class App extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			hotdogs: HOTDOGS,
-		};
-	}
-
 	render() {
 		return (
-			<div className="App">
-				<Navbar dark color="success">
-					<div className="container">
-						<NavbarBrand href="/">Dogs Gone Wild</NavbarBrand>
-					</div>
-				</Navbar>
-				<Menu hotdogs={this.state.hotdogs} />
-			</div>
+			<BrowserRouter>
+				<div className="App">
+					<Main />
+				</div>
+			</BrowserRouter>
 		);
 	}
 }

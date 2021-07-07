@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardImgOverlay, Badge, Button, CardBody, CardTitle, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Card, CardImg, CardImgOverlay, Badge, CardTitle, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 class Menu extends Component {
 	constructor(props) {
@@ -40,21 +40,12 @@ class Menu extends Component {
 								Quantity:
 								<br />
 							</p>
-
 							<button type="button" class="btn btn-primary btn-lg float-right">
 								Add to Cart
 							</button>
 						</ModalBody>
 					</ModalBody>
 				</Modal>
-
-				// <Card>
-				// 	<CardImg top src={hotdog.image} alt={hotdog.name} />
-				// 	<CardBody>
-				// 		<CardTitle>{hotdog.name}</CardTitle>
-				// 		<CardBody>{hotdog.description}</CardBody>
-				// 	</CardBody>
-				// </Card>
 			);
 		}
 		return <div />;
@@ -63,7 +54,7 @@ class Menu extends Component {
 		//this.state changed to this.props because data is now in a different file
 		const menu = this.props.hotdogs.map((hotdog) => {
 			return (
-				<div key={hotdog.id} className="col-md-4">
+				<div key={hotdog.id} className="col-md-6 my-3">
 					<span onClick={this.toggleModal}>
 						<Card onClick={() => this.onHotdogSelect(hotdog)}>
 							<CardImg width="100%" src={hotdog.image} alt={hotdog.name} />
@@ -72,15 +63,6 @@ class Menu extends Component {
 							</CardImgOverlay>
 						</Card>
 					</span>
-
-					{/* <div className="col-12 col-sm-4">
-						<img className="align-self-start img-fluid" src={hotdog.image} alt={hotdog.name} />
-					</div>
-					<div className="col-12 col-sm-8">
-						<h2>{hotdog.name}</h2>
-						<p>{hotdog.description}</p>
-						<h5>${hotdog.price}</h5>
-					</div> */}
 				</div>
 			);
 		});
@@ -88,9 +70,30 @@ class Menu extends Component {
 		return (
 			<div className="container">
 				<div className="row">
-					<div className="col-md-5 m-1">{this.renderSelectedHotdog(this.state.selectedHotdog)}</div>
+					<div className="col">
+						<h2>Menu</h2>
+						<hr />
+						<div className="row">
+							<div className="col-sm-6">
+								<h3>How to View the Menu</h3>
+								<p>
+									Click on any image of your desired hot dog to learn more information about it. You also have the option of adding the hot dog to your cart from the pop-up for your
+									online order.
+								</p>
+							</div>
+							<div className="col-sm-6">
+								<h3>Sides and Extras</h3>
+								<p>Sides and extras are available from the order page. There you can see what is available.</p>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div className="row">{menu}</div>
+				<div className="row">
+					<div className="col">
+						<div>{this.renderSelectedHotdog(this.state.selectedHotdog)}</div>
+					</div>
+					<div className="row">{menu}</div>
+				</div>
 			</div>
 		);
 	}
