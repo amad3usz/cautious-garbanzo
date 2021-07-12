@@ -56,19 +56,12 @@ function Footer(props) {
 								<br />
 								48226
 							</a>
-							{/* <iframe
-								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2949.3834731676316!2d-83.04846958445579!3d42.33434697918864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x883b2d2e19c99c03%3A0xa47347684f838a2d!2s1234%20Library%20St%2C%20Detroit%2C%20MI%2048226!5e0!3m2!1sen!2sus!4v1625348511557!5m2!1sen!2sus"
-								width="400"
-								height="300"
-								allowfullscreen=""
-								loading="lazy"
-							></iframe> */}
 						</address>
-						<a role="button" className="btn btn-link" href="tel:+12065551234">
+						<a className="btn-link" href="tel:+12065551234">
 							<i className="fa fa-phone" /> 313-123-4567
 						</a>
 						<br />
-						<a role="button" className="btn btn-link" href="mailto:noone@nowhere.co">
+						<a className="btn-link" href="mailto:noone@nowhere.co">
 							<i className="fa fa-envelope-o" /> contact@dgw.com
 						</a>
 					</div>

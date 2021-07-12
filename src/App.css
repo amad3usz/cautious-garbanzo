@@ -8,10 +8,6 @@ h3,
 	font-family: 'Pacifico', cursive;
 }
 
-h3#home-story {
-	font-family: 'Comfortaa', sans-serif;
-}
-
 h2 {
 	font-size: 1.5rem;
 	font-family: 'Comfortaa', sans-serif;
@@ -31,6 +27,7 @@ h2 {
 	left: 0;
 	padding: 10px;
 	text-align: center;
+	cursor: pointer;
 }
 
 .col {
@@ -52,7 +49,6 @@ h2 {
 	margin: 0;
 	padding: 100px 0px;
 	height: 300px;
-	/* background-image: linear-gradient(to right, #efca08, #f49f0a, #f08700); */
 	color: white;
 }
 
@@ -71,9 +67,6 @@ h2 {
 
 .badge {
 	color: black;
-}
-.img-thumbnail {
-	width: 150px;
 }
 
 .jumbotron h2 {
@@ -98,4 +91,35 @@ a:hover,
 .btn-link:hover {
 	color: #005454;
 	text-decoration: none;
+}
+
+.img-thumbnail {
+	height: 100px;
+	width: 100px;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.badge-info {
+	color: #fff;
+	background-color: #00a6a6;
+}
+
+.btn-info {
+	color: #fff;
+	background-color: #00a6a6;
+	border-color: #00a6a6;
+}
+
+.btn-info:hover {
+	color: #fff;
+	background-color: #008282;
+	border-color: #007272;
+}
+
+.btn-info:focus,
+.btn-info.focus {
+	box-shadow: 0 0 0 0.2rem rgba(0, 166, 166, 0.5);
 }

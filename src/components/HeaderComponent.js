@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand, Jumbotron, Nav, NavbarToggler, Collapse, NavItem } from 'reactstrap';
+import { Navbar, Jumbotron, Nav, NavbarToggler, Collapse, NavItem } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import dgwbacksplash from '../shared/dgwbacksplash.jpg';
 
@@ -36,9 +36,6 @@ class Header extends Component {
 				</Jumbotron>
 				<Navbar dark sticky="top" expand="md">
 					<div className="container">
-						<NavbarBrand className="mr-auto" href="/">
-							<img src="/assets/images/hotdoglogo.png" height="30" width="30" alt="DGW Logo" />{' '}
-						</NavbarBrand>
 						<NavbarToggler onClick={this.toggleNav} />
 						<Collapse isOpen={this.state.isNavOpen} navbar>
 							<Nav className="ml-auto" navbar>

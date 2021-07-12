@@ -8,36 +8,50 @@ import Footer from './FooterComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
 import Order from './OrderComponent';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import Cart from './CartComponent';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addToCart } from '../redux/ActionCreators';
 import { HOTDOGS } from '../shared/hotdogs';
-import { BEVERAGES } from '../shared/beverages';
+
+const mapStateToProps = (state) => {
+	return {
+		items: state.hotdogs,
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		addToCart: (id) => {
+			dispatch(addToCart(id));
+		},
+	};
+};
 
 class Main extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			hotdogs: HOTDOGS,
-			beverages: BEVERAGES,
-		};
-	}
-
 	render() {
 		const HomePage = () => {
 			return <Home />;
 		};
 
 		const OrderPage = () => {
-			return <Order beverage={this.state.beverages} hotdogs={this.state.hotdogs} />;
+			return <Order items={this.props.items} />;
 		};
+
+		const CartPage = () => {
+			return <Cart items={this.props.items} />;
+		};
+
 		return (
 			<div>
 				<Header />
 				<Switch>
 					<Route path="/home" component={HomePage} />
-					<Route exact path="/menu" render={() => <Menu hotdogs={this.state.hotdogs.filter((food) => food.food === true)} />} />
+					<Route exact path="/menu" render={() => <Menu hotdogs={HOTDOGS.filter((food) => food.food === true)} />} />
 					<Route exact path="/order" component={OrderPage} />
 					<Route exact path="/aboutus" component={About} />
 					<Route exact path="/contactus" component={Contact} />
+					<Route exact path="/cart" component={CartPage} />
 					<Redirect to="/home" />
 				</Switch>
 				<Footer />
@@ -46,4 +60,4 @@ class Main extends Component {
 	}
 }
 
-export default Main;
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
