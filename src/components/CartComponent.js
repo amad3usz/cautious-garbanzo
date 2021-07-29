@@ -1,21 +1,77 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { removeItem, addQuantity, subtractQuantity } from '../redux/ActionCreators';
-import Receipt from './Receipt';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+
+const mapStateToProps = (state) => {
+	return {
+		addedItems: state.addedItems,
+		total: state.total,
+	};
+};
 
 class Cart extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			isModalOpen: false,
+		};
+		this.toggleModal = this.toggleModal.bind(this);
+	}
+
 	handleRemove = (id) => {
-		this.props.removeItem(id);
+		this.props.actions.removeItem(id);
 	};
 
 	handleAddQuantity = (id) => {
-		this.props.addQuantity(id);
+		this.props.actions.addQuantity(id);
 	};
 
 	handleSubtractQuantity = (id) => {
-		this.props.subtractQuantity(id);
+		this.props.actions.subtractQuantity(id);
 	};
+
+	// checkbox does not becomed checked, but delivery fee is continuously added (if add delivery function is commented out, it will check and uncheck, but subtract continuously instead)
+	handleChecked = (e) => {
+		if (e.target.checked) {
+			this.props.actions.addDelivery();
+		} else {
+			this.props.actions.subtractDelivery();
+		}
+	};
+
+	handleClick = () => {
+		this.toggleModal();
+	};
+
+	toggleModal() {
+		this.setState({
+			isModalOpen: !this.state.isModalOpen,
+		});
+	}
+
+	// unable to reset to initial state; not sure what to do here
+	submitOrder = () => {
+		this.props.actions.resetState();
+		this.toggleModal();
+	};
+
+	renderModal() {
+		return (
+			<div>
+				<Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+					<ModalHeader toggle={this.toggleModal}>Total</ModalHeader>
+					<ModalBody>
+						<p>Your total comes out to ${this.props.total.toFixed(2)}</p>
+						<hr />
+						<button onClick={this.submitOrder} className="btn btn-info btn-lg float-right">
+							Submit Order!
+						</button>
+					</ModalBody>
+				</Modal>
+			</div>
+		);
+	}
 
 	render() {
 		let addedItems = this.props.items.length ? (
@@ -23,12 +79,9 @@ class Cart extends Component {
 				return (
 					<div className="text-center" key={item.id}>
 						<span>{item.name}</span>
-
 						<p>
-							<b>Price: ${item.price.toFixed(2)}</b>
-							{/* * item.quantity */}
+							<b>Price: ${(item.price * item.quantity).toFixed(2)}</b>
 						</p>
-
 						<Link>
 							<i
 								className="fa fa-arrow-up"
@@ -63,34 +116,34 @@ class Cart extends Component {
 		) : (
 			<p>Nothing.</p>
 		);
+
 		return (
 			<div className="container">
 				<div className="cart">
 					<h5>Your Order:</h5>
 					<div>{addedItems}</div>
 				</div>
-				<Receipt />
+				<div>
+					<div className="container">
+						<div>
+							<label>
+								<input type="checkbox" onChange={this.handleChecked} />
+								<span> Get it Delivered! (+$6)</span>
+							</label>
+							<br />
+							<b>Total: ${this.props.total.toFixed(2)}</b>
+						</div>
+						<div className="checkout">
+							<button onClick={this.toggleModal} className="btn btn-info">
+								Checkout
+							</button>
+						</div>
+					</div>
+				</div>
+				<div>{this.renderModal()}</div>
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		items: state.addedItems,
-	};
-};
-const mapDispatchToProps = (dispatch) => {
-	return {
-		removeItem: (id) => {
-			dispatch(removeItem(id));
-		},
-		addQuantity: (id) => {
-			dispatch(addQuantity(id));
-		},
-		subtractQuantity: (id) => {
-			dispatch(subtractQuantity(id));
-		},
-	};
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default connect(mapStateToProps)(Cart);

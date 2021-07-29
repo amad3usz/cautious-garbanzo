@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Cart from './CartComponent';
-import { addToCart } from '../redux/ActionCreators';
+import { Badge } from 'reactstrap';
 
 class Order extends Component {
 	handleClick = (id) => {
@@ -16,7 +15,7 @@ class Order extends Component {
 						<img className="align-self-start mr-3 img-thumbnail" src={item.image} alt={item.name} />
 						<div className="media-body">
 							<p className="mt-0">
-								<strong>{item.name}</strong>
+								<strong>{item.name}</strong> <Badge className="rounded-pill badge-info">${item.price}</Badge>
 							</p>
 							<p className="d-none d-md-block">{item.description}</p>
 							<p
@@ -35,6 +34,15 @@ class Order extends Component {
 			);
 		});
 
+		const cartActions = {
+			removeItem: this.props.removeItem,
+			addQuantity: this.props.addQuantity,
+			subtractQuantity: this.props.subtractQuantity,
+			addDelivery: this.props.addDelivery,
+			subtractDelivery: this.props.subtractDelivery,
+			resetState: this.props.resetState,
+		};
+
 		return (
 			<div className="container">
 				<div className="row">
@@ -44,7 +52,7 @@ class Order extends Component {
 						<div className="row">
 							<div className="col col-md-8">{itemList}</div>
 							<div className="col col-md-4">
-								<Cart />
+								<Cart items={this.props.addedItems} actions={cartActions} />
 							</div>
 						</div>
 					</div>
@@ -53,17 +61,5 @@ class Order extends Component {
 		);
 	}
 }
-const mapStateToProps = (state) => {
-	return {
-		items: state.items,
-	};
-};
-const mapDispatchToProps = (dispatch) => {
-	return {
-		addToCart: (id) => {
-			dispatch(addToCart(id));
-		},
-	};
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Order);
+export default Order;

@@ -73,13 +73,6 @@ class Header extends Component {
 									</NavLink>
 								</NavItem>
 							</Nav>
-							<Nav navbar>
-								<NavItem>
-									<NavLink className="nav-link" to="/cart">
-										<i className="fa fa-shopping-cart fa-lg" /> Cart
-									</NavLink>
-								</NavItem>
-							</Nav>
 						</Collapse>
 					</div>
 				</Navbar>

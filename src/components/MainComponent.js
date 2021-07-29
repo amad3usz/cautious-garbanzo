@@ -8,15 +8,15 @@ import Footer from './FooterComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
 import Order from './OrderComponent';
-import Cart from './CartComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addToCart } from '../redux/ActionCreators';
-import { HOTDOGS } from '../shared/hotdogs';
+import { addToCart, removeItem, addQuantity, subtractQuantity, addDelivery, subtractDelivery, resetState } from '../redux/ActionCreators';
 
 const mapStateToProps = (state) => {
 	return {
-		items: state.hotdogs,
+		items: state.items,
+		addedItems: state.addedItems,
+		total: state.total,
 	};
 };
 
@@ -25,33 +25,55 @@ const mapDispatchToProps = (dispatch) => {
 		addToCart: (id) => {
 			dispatch(addToCart(id));
 		},
+		removeItem: (id) => {
+			dispatch(removeItem(id));
+		},
+		addQuantity: (id) => {
+			dispatch(addQuantity(id));
+		},
+		subtractQuantity: (id) => {
+			dispatch(subtractQuantity(id));
+		},
+		addDelivery: () => {
+			dispatch(addDelivery());
+		},
+		subtractDelivery: () => {
+			dispatch(subtractDelivery());
+		},
+		resetState: () => {
+			dispatch(resetState());
+		},
 	};
 };
 
 class Main extends Component {
 	render() {
-		const HomePage = () => {
-			return <Home />;
-		};
-
 		const OrderPage = () => {
-			return <Order items={this.props.items} />;
-		};
-
-		const CartPage = () => {
-			return <Cart items={this.props.items} />;
+			return (
+				<Order
+					items={this.props.items}
+					addedItems={this.props.addedItems}
+					total={this.props.total}
+					addToCart={this.props.addToCart}
+					removeItem={this.props.removeItem}
+					addQuantity={this.props.addQuantity}
+					subtractQuantity={this.props.subtractQuantity}
+					addDelivery={this.props.addDelivery}
+					subtractDelivery={this.props.subtractDelivery}
+					resetState={this.props.resetState}
+				/>
+			);
 		};
 
 		return (
 			<div>
 				<Header />
 				<Switch>
-					<Route path="/home" component={HomePage} />
-					<Route exact path="/menu" render={() => <Menu hotdogs={HOTDOGS.filter((food) => food.food === true)} />} />
+					<Route path="/home" component={Home} />
+					<Route exact path="/menu" render={() => <Menu hotdogs={this.props.items.filter((food) => food.food === true)} />} />
 					<Route exact path="/order" component={OrderPage} />
 					<Route exact path="/aboutus" component={About} />
 					<Route exact path="/contactus" component={Contact} />
-					<Route exact path="/cart" component={CartPage} />
 					<Redirect to="/home" />
 				</Switch>
 				<Footer />

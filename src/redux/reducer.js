@@ -1,11 +1,10 @@
 import { HOTDOGS } from '../shared/hotdogs';
-import { ADD_TO_CART, REMOVE_ITEM, SUB_QUANTITY, ADD_QUANTITY, ADD_DELIVERY, SUB_DELIVERY } from './ActionTypes';
+import { ADD_TO_CART, REMOVE_ITEM, SUB_QUANTITY, ADD_QUANTITY, ADD_DELIVERY, SUB_DELIVERY, RESET_STATE } from './ActionTypes';
 
 export const initialState = {
 	items: HOTDOGS,
 	addedItems: [],
 	total: 0,
-	isModalOpen: false,
 };
 
 export const Reducer = (state = initialState, action) => {
@@ -28,6 +27,7 @@ export const Reducer = (state = initialState, action) => {
 			};
 		}
 	}
+
 	if (action.type === REMOVE_ITEM) {
 		let itemToRemove = state.addedItems.find((item) => action.id === item.id);
 		let new_items = state.addedItems.filter((item) => action.id !== item.id);
@@ -39,6 +39,7 @@ export const Reducer = (state = initialState, action) => {
 			total: newTotal,
 		};
 	}
+
 	if (action.type === ADD_QUANTITY) {
 		let addedItem = state.items.find((item) => item.id === action.id);
 		addedItem.quantity += 1;
@@ -48,6 +49,7 @@ export const Reducer = (state = initialState, action) => {
 			total: newTotal,
 		};
 	}
+
 	if (action.type === SUB_QUANTITY) {
 		let addedItem = state.items.find((item) => item.id === action.id);
 		if (addedItem.quantity === 1) {
@@ -72,6 +74,15 @@ export const Reducer = (state = initialState, action) => {
 		return {
 			...state,
 			total: state.total + 6,
+		};
+	}
+
+	if (action.type === RESET_STATE) {
+		return {
+			...state,
+			addedItems: [],
+			total: 0,
+			//unsure of how to return back to initial state
 		};
 	}
 
