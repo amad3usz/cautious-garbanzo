@@ -1,5 +1,5 @@
 import { HOTDOGS } from '../shared/hotdogs';
-import { ADD_TO_CART, REMOVE_ITEM, SUB_QUANTITY, ADD_QUANTITY, ADD_DELIVERY, SUB_DELIVERY, RESET_STATE } from './ActionTypes';
+import { ADD_TO_CART, REMOVE_ITEM, SUB_QUANTITY, ADD_QUANTITY, ADD_DELIVERY, SUB_DELIVERY, RESETSTATE } from './ActionTypes';
 
 export const initialState = {
 	items: HOTDOGS,
@@ -77,21 +77,18 @@ export const Reducer = (state = initialState, action) => {
 		};
 	}
 
-	if (action.type === RESET_STATE) {
-		return {
-			...state,
-			addedItems: [],
-			total: 0,
-			//unsure of how to return back to initial state
-		};
-	}
-
 	if (action.type === SUB_DELIVERY) {
 		return {
 			...state,
 			total: state.total - 6,
 		};
-	} else {
-		return state;
+	}
+
+	if (action.type === RESETSTATE) {
+		return {
+			...state,
+			addedItems: [],
+			total: 0,
+		};
 	}
 };
