@@ -126,9 +126,6 @@ class Cart extends Component {
 				<div>
 					<div className="container">
 						<div>
-							<button onClick={this.submitOrder} className="btn btn-info btn-lg float-right">
-								Submit Order!
-							</button>
 							<label>
 								<input type="checkbox" onChange={this.handleChecked} />
 								<span> Get it Delivered! (+$6)</span>
