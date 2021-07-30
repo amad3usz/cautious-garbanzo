@@ -17,6 +17,9 @@ const mapStateToProps = (state) => {
 		items: state.items,
 		addedItems: state.addedItems,
 		total: state.total,
+		name: state.name,
+		email: state.email,
+		feedback: state.feedback,
 	};
 };
 
@@ -65,6 +68,10 @@ class Main extends Component {
 			);
 		};
 
+		const ContactPage = () => {
+			return <Contact name={this.props.name} email={this.props.email} feedback={this.props.feedback} resetState={this.props.resetState} />;
+		};
+
 		return (
 			<div>
 				<Header />
@@ -73,7 +80,7 @@ class Main extends Component {
 					<Route exact path="/menu" render={() => <Menu hotdogs={this.props.items.filter((food) => food.food === true)} />} />
 					<Route exact path="/order" component={OrderPage} />
 					<Route exact path="/aboutus" component={About} />
-					<Route exact path="/contactus" component={Contact} />
+					<Route exact path="/contactus" component={ContactPage} />
 					<Redirect to="/home" />
 				</Switch>
 				<Footer />

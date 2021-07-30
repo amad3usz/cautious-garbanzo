@@ -5,6 +5,9 @@ export const initialState = {
 	items: HOTDOGS,
 	addedItems: [],
 	total: 0,
+	name: '',
+	email: '',
+	feedback: '',
 };
 
 export const Reducer = (state = initialState, action) => {
@@ -89,6 +92,9 @@ export const Reducer = (state = initialState, action) => {
 			...state,
 			addedItems: [],
 			total: 0,
+			name: '',
+			email: '',
+			feedback: '',
 		};
 	} else {
 		return { ...state };

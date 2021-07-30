@@ -64,7 +64,7 @@ class Cart extends Component {
 					<ModalBody>
 						<p>Your total comes out to ${this.props.total.toFixed(2)}</p>
 						<hr />
-						<button onClick={this.submitOrder} className="btn btn-info btn-lg float-right">
+						<button onClick={this.submitOrder} className="btn btn-info float-right">
 							Submit Order!
 						</button>
 					</ModalBody>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Label, Col, Row } from 'reactstrap';
+import { Button, Label, Col, Row, Modal, ModalBody } from 'reactstrap';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 
 const required = (val) => val && val.length;
@@ -11,20 +11,48 @@ class Contact extends Component {
 		super(props);
 
 		this.state = {
-			name: '',
-			email: '',
-			feedback: '',
 			touched: {
 				name: false,
 				email: false,
 			},
+			isModalOpen: false,
 		};
-
+		this.toggleModal = this.toggleModal.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.send = this.send.bind(this);
 	}
 	handleSubmit(values) {
-		alert('Current state is: ' + JSON.stringify(values));
+		// alert('Current state is: ' + JSON.stringify(values));
+		this.toggleModal();
 	}
+
+	send() {
+		this.toggleModal();
+		this.props.resetState();
+	}
+
+	toggleModal() {
+		this.setState({
+			isModalOpen: !this.state.isModalOpen,
+		});
+	}
+
+	renderModal() {
+		return (
+			<div>
+				<Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+					<ModalBody>
+						<p>Thank you for your feedback.</p>
+						<hr />
+						<button onClick={this.send} className="btn btn-info float-right">
+							No Problem!
+						</button>
+					</ModalBody>
+				</Modal>
+			</div>
+		);
+	}
+
 	render() {
 		return (
 			<div className="container">
@@ -80,7 +108,7 @@ class Contact extends Component {
 										model=".name"
 										id="name"
 										name="name"
-										placeholder="First Name"
+										placeholder="Name"
 										className="form-control"
 										validators={{
 											required,
@@ -145,6 +173,7 @@ class Contact extends Component {
 						</LocalForm>
 					</div>
 				</div>
+				<div>{this.renderModal()}</div>
 			</div>
 		);
 	}
