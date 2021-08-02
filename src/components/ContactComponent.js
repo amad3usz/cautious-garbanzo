@@ -28,7 +28,9 @@ class Contact extends Component {
 
 	send() {
 		this.toggleModal();
-		this.props.resetState();
+		this.props.resetForm();
+
+		console.log(this.props.resetForm); //shows in console, but not doing anything?
 	}
 
 	toggleModal() {

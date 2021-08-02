@@ -10,7 +10,7 @@ import About from './AboutComponent';
 import Order from './OrderComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addToCart, removeItem, addQuantity, subtractQuantity, addDelivery, subtractDelivery, resetState } from '../redux/ActionCreators';
+import { addToCart, removeItem, addQuantity, subtractQuantity, addDelivery, subtractDelivery, resetState, resetForm } from '../redux/ActionCreators';
 
 const mapStateToProps = (state) => {
 	return {
@@ -46,6 +46,9 @@ const mapDispatchToProps = (dispatch) => {
 		resetState: () => {
 			dispatch(resetState());
 		},
+		resetForm: () => {
+			dispatch(resetForm());
+		},
 	};
 };
 
@@ -69,7 +72,7 @@ class Main extends Component {
 		};
 
 		const ContactPage = () => {
-			return <Contact name={this.props.name} email={this.props.email} feedback={this.props.feedback} resetState={this.props.resetState} />;
+			return <Contact name={this.props.name} email={this.props.email} feedback={this.props.feedback} resetForm={this.props.resetForm} />;
 		};
 
 		return (

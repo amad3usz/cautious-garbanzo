@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_ITEM, SUB_QUANTITY, ADD_QUANTITY, ADD_DELIVERY, SUB_DELIVERY, RESETSTATE } from './ActionTypes';
+import { ADD_TO_CART, REMOVE_ITEM, SUB_QUANTITY, ADD_QUANTITY, ADD_DELIVERY, SUB_DELIVERY, RESETSTATE, RESETFORM } from './ActionTypes';
 
 export const addToCart = (id) => {
 	return {
@@ -37,6 +37,12 @@ export const addDelivery = () => {
 export const subtractDelivery = () => {
 	return {
 		type: SUB_DELIVERY,
+	};
+};
+
+export const resetForm = () => {
+	return {
+		type: RESETFORM,
 	};
 };
 
