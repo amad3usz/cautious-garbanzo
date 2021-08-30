@@ -8,7 +8,6 @@ export const initialState = {
 	name: '',
 	email: '',
 	feedback: '',
-	checked: false,
 };
 
 export const Reducer = (state = initialState, action) => {
@@ -89,8 +88,11 @@ export const Reducer = (state = initialState, action) => {
 	}
 
 	if (action.type === RESETFORM) {
+		console.log('it works');
 		return {
 			...state,
+			addedItems: [],
+			total: 0,
 			name: '',
 			email: '',
 			feedback: '',
@@ -102,6 +104,9 @@ export const Reducer = (state = initialState, action) => {
 			...state,
 			addedItems: [],
 			total: 0,
+			name: '',
+			email: '',
+			feedback: '',
 		};
 	} else {
 		return { ...state };

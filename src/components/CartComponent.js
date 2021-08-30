@@ -7,6 +7,7 @@ const mapStateToProps = (state) => {
 	return {
 		addedItems: state.addedItems,
 		total: state.total,
+		checked: state.checked,
 	};
 };
 

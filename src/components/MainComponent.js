@@ -20,6 +20,7 @@ const mapStateToProps = (state) => {
 		name: state.name,
 		email: state.email,
 		feedback: state.feedback,
+		checked: state.checked,
 	};
 };
 
@@ -43,11 +44,11 @@ const mapDispatchToProps = (dispatch) => {
 		subtractDelivery: () => {
 			dispatch(subtractDelivery());
 		},
-		resetState: () => {
-			dispatch(resetState());
-		},
 		resetForm: () => {
 			dispatch(resetForm());
+		},
+		resetState: () => {
+			dispatch(resetState());
 		},
 	};
 };
