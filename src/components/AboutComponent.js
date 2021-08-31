@@ -22,11 +22,11 @@ function About(props) {
 					<h3>Our Mission</h3>
 					<p>
 						At Dogs Gone Wild, we are all about making hot dogs the best that they can be. We work with farmers we know and trust and have been making our own organic hot dogs for years,
-						while supporting local agricultural businesses. All of our hot dogs are made with local, grass-pastured meat and free of the yucky stugg found in most other hot dogs.
+						while supporting local agricultural businesses. All of our hot dogs are made with local, grass-pastured meat and free of the yucky stuff found in most other hot dogs.
 					</p>
 					<p>
 						Making hot dogs this way requires more time, work and, skill, but we think it’s absolutely worth it. Whether you find Dogs Gone Wild on the street at the food truck or visit
-						our beautiful new restaurant on Library Street, we want you to know that we are doing our best to give everyone the best that they deserve. We hope that you enjoy your hot dog
+						our beautiful new restaurant on Library Street, we want you to know that we are doing our best to give everyone the best that they deserve. We hope that you enjoy your hot dogs
 						as much as we enjoy making them for you.
 					</p>
 				</div>
