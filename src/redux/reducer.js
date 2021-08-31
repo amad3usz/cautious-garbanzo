@@ -92,6 +92,7 @@ export const Reducer = (state = initialState, action) => {
 			...state,
 			addedItems: [],
 			total: 0,
+			delivery: false,
 		};
 	} else {
 		return { ...state };
