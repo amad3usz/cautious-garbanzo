@@ -1,13 +1,11 @@
 import { HOTDOGS } from '../shared/hotdogs';
-import { ADD_TO_CART, REMOVE_ITEM, SUB_QUANTITY, ADD_QUANTITY, ADD_DELIVERY, SUB_DELIVERY, RESETSTATE, RESETFORM } from './ActionTypes';
+import { ADD_TO_CART, REMOVE_ITEM, SUB_QUANTITY, ADD_QUANTITY, ADD_DELIVERY, SUB_DELIVERY, RESETSTATE } from './ActionTypes';
 
 export const initialState = {
 	items: HOTDOGS,
 	addedItems: [],
 	total: 0,
-	name: '',
-	email: '',
-	feedback: '',
+	delivery: false,
 };
 
 export const Reducer = (state = initialState, action) => {
@@ -77,6 +75,7 @@ export const Reducer = (state = initialState, action) => {
 		return {
 			...state,
 			total: state.total + 6,
+			delivery: true,
 		};
 	}
 
@@ -84,18 +83,7 @@ export const Reducer = (state = initialState, action) => {
 		return {
 			...state,
 			total: state.total - 6,
-		};
-	}
-
-	if (action.type === RESETFORM) {
-		console.log('it works');
-		return {
-			...state,
-			addedItems: [],
-			total: 0,
-			name: '',
-			email: '',
-			feedback: '',
+			delivery: false,
 		};
 	}
 
@@ -104,9 +92,6 @@ export const Reducer = (state = initialState, action) => {
 			...state,
 			addedItems: [],
 			total: 0,
-			name: '',
-			email: '',
-			feedback: '',
 		};
 	} else {
 		return { ...state };

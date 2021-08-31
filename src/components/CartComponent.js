@@ -7,7 +7,6 @@ const mapStateToProps = (state) => {
 	return {
 		addedItems: state.addedItems,
 		total: state.total,
-		checked: state.checked,
 	};
 };
 
@@ -32,15 +31,15 @@ class Cart extends Component {
 		this.props.actions.subtractQuantity(id);
 	};
 
-	// checkbox does not becomed checked, but delivery fee is continuously added (if addDelivery function is commented out, it will check and uncheck, but subtract continuously instead)
 	handleChecked = (e) => {
-		if (e.target.checked) {
+		if (this.props.delivery === false) {
 			this.props.actions.addDelivery();
-		} else {
+			// console.log(this.props.delivery);
+		} else if (this.props.delivery === true) {
 			this.props.actions.subtractDelivery();
+			// console.log(this.props.delivery);
 		}
 	};
-
 	handleClick = () => {
 		this.toggleModal();
 	};
@@ -51,7 +50,6 @@ class Cart extends Component {
 		});
 	}
 
-	// unable to reset to initial state; not sure what to do here (seems like action isn't even)
 	submitOrder = () => {
 		this.props.actions.resetState();
 		this.toggleModal();
@@ -128,8 +126,7 @@ class Cart extends Component {
 					<div className="container">
 						<div>
 							<label>
-								<input type="checkbox" onChange={this.handleChecked} />
-								<span> Get it Delivered! (+$6)</span>
+								<input type="checkbox" checked={this.props.delivery} onChange={this.handleChecked} /> <span>Delivery? (+$6)</span>
 							</label>
 							<br />
 							<b>Total: ${this.props.total.toFixed(2)}</b>

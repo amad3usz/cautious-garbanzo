@@ -22,15 +22,13 @@ class Contact extends Component {
 		this.send = this.send.bind(this);
 	}
 	handleSubmit(values) {
-		// alert('Current state is: ' + JSON.stringify(values));
 		this.toggleModal();
+		//alert('Current state is: ' + JSON.stringify(values));
 	}
 
 	send() {
 		this.toggleModal();
-		this.props.resetForm();
-
-		console.log(this.props.resetForm); //shows in console, but not doing anything?
+		this.props.resetState();
 	}
 
 	toggleModal() {

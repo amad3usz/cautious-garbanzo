@@ -10,17 +10,14 @@ import About from './AboutComponent';
 import Order from './OrderComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addToCart, removeItem, addQuantity, subtractQuantity, addDelivery, subtractDelivery, resetState, resetForm } from '../redux/ActionCreators';
+import { addToCart, removeItem, addQuantity, subtractQuantity, addDelivery, subtractDelivery, resetState } from '../redux/ActionCreators';
 
 const mapStateToProps = (state) => {
 	return {
 		items: state.items,
 		addedItems: state.addedItems,
 		total: state.total,
-		name: state.name,
-		email: state.email,
-		feedback: state.feedback,
-		checked: state.checked,
+		delivery: state.delivery,
 	};
 };
 
@@ -44,9 +41,6 @@ const mapDispatchToProps = (dispatch) => {
 		subtractDelivery: () => {
 			dispatch(subtractDelivery());
 		},
-		resetForm: () => {
-			dispatch(resetForm());
-		},
 		resetState: () => {
 			dispatch(resetState());
 		},
@@ -61,6 +55,7 @@ class Main extends Component {
 					items={this.props.items}
 					addedItems={this.props.addedItems}
 					total={this.props.total}
+					delivery={this.props.delivery}
 					addToCart={this.props.addToCart}
 					removeItem={this.props.removeItem}
 					addQuantity={this.props.addQuantity}
@@ -73,7 +68,7 @@ class Main extends Component {
 		};
 
 		const ContactPage = () => {
-			return <Contact name={this.props.name} email={this.props.email} feedback={this.props.feedback} resetForm={this.props.resetForm} />;
+			return <Contact resetState={this.props.resetState} />;
 		};
 
 		return (

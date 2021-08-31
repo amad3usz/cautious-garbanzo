@@ -5,6 +5,7 @@ import { Badge } from 'reactstrap';
 class Order extends Component {
 	handleClick = (id) => {
 		this.props.addToCart(id);
+		console.log(this.props.delivery);
 	};
 
 	render() {
@@ -52,7 +53,7 @@ class Order extends Component {
 						<div className="row">
 							<div className="col col-md-8">{itemList}</div>
 							<div className="col col-md-4">
-								<Cart items={this.props.addedItems} actions={cartActions} />
+								<Cart items={this.props.addedItems} delivery={this.props.delivery} actions={cartActions} />
 							</div>
 						</div>
 					</div>
